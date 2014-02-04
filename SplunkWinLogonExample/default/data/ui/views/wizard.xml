@@ -1,5 +1,5 @@
 <form stylesheet="wizard.css">
-  <label>User Experience - Logon Performance</label>
+  <label>Logon Performance Wizard</label>
   
   <fieldset autoRun="false">
     <html>
@@ -31,7 +31,7 @@
       <drilldown>
         <link>
           <![CDATA[
-            /app/SplunkWinLogonExample/dashboard?form.username=$row.User Name$&form.ActivityId=$row.ActivityId$&earliest=$earliest$&latest=$latest$
+            /app/SplunkWinLogonExample/results?form.username=$row.User Name$&form.ActivityId=$row.ActivityId$&earliest=$earliest$&latest=$latest$
           ]]>
          </link>
      </drilldown>

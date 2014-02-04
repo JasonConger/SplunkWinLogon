@@ -1,5 +1,5 @@
-<form stylesheet="user_logon_exp.css">
-  <label>User Experience - Logon Performance</label>
+<form stylesheet="results.css">
+  <label>Logon Performance Dashboard</label>
   
   <fieldset autoRun="false">
     <input type="time" searchWhenChanged="true">
@@ -20,7 +20,7 @@
   <row>
     <single>
       <searchString>
-        `xd_winevents_index` sourcetype="wineventlog:microsoft-windows-grouppolicy/operational" ActivityId="$ActivityId$" |
+        index=main sourcetype="wineventlog:microsoft-windows-grouppolicy/operational" ActivityId="$ActivityId$" |
         transaction ActivityId |
         fields duration
       </searchString>
@@ -33,7 +33,7 @@
   <row>
     <chart>
       <searchString>
-        `xd_winevents_index` sourcetype="wineventlog:microsoft-windows-grouppolicy/operational" ActivityId="$ActivityId$" |
+        index=main sourcetype="wineventlog:microsoft-windows-grouppolicy/operational" ActivityId="$ActivityId$" |
         reverse |
         search *MilliSeconds* | chart max(*MilliSeconds*) AS *MilliSeconds* BY Message 
       </searchString>
@@ -46,7 +46,7 @@
   <row>
     <table id="userSessions">
       <searchString>
-        `xd_winevents_index` sourcetype="wineventlog:microsoft-windows-grouppolicy/operational" ActivityId="$ActivityId$" |
+        index=main sourcetype="wineventlog:microsoft-windows-grouppolicy/operational" ActivityId="$ActivityId$" |
         reverse |
         table EventID OpcodeDisplayName Message CSEElaspedTimeInMilliSeconds CSEExtensionName DescriptionString OperationElaspedTimeInMilliSeconds PolicyElaspedTimeInSeconds |
         rename EventID AS "Event ID" OpcodeDisplayName AS "Operation" CSEElaspedTimeInMilliSeconds AS "CSE Elapsed Time" CSEExtensionName AS "CSE Name" DescriptionString AS "Description" OperationElaspedTimeInMilliSeconds AS "Operation Elapsed Time" PolicyElaspedTimeInSeconds AS "Policy Elasped Time"
