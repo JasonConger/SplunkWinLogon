@@ -8,7 +8,7 @@ $output = ""          # holds the output of a single event
 $splunk_output = ""    # holds the output of all events
 
 
-$positionFilePath = Join-Path -Path $env:SPLUNK_HOME "etc\apps\TA-WinLogon\bin\powershell"
+$positionFilePath = Join-Path -Path $env:SPLUNK_HOME "etc\apps\SplunkWinLogon\bin\powershell"
 $positionFile = Join-Path $positionFilePath $positionFileName
 
 # If the position file does not exist, create it
@@ -33,7 +33,7 @@ try
     Write-Debug("{0} - Info - Position file contains {1}" -f (Get-Date), $lastRecordID)
 
     # Get events since the last time the script was run
-    $events = Get-WinEvent -LogName $logName | Where-Object {$_.RecordId -gt $lastRecordID} | Sort-Object RecordId
+    $events = Get-WinEvent -LogName $logName -FilterXPath "*[System[(EventRecordID > $lastRecordID)]]" -Oldest -ea SilentlyContinue | Sort-Object RecordId
 
     if(!$events)
     {
