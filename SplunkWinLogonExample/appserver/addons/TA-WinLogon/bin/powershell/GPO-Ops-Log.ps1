@@ -8,7 +8,7 @@ $output = ""          # holds the output of a single event
 $splunk_output = ""    # holds the output of all events
 
 
-$positionFilePath = Join-Path -Path $env:SPLUNK_HOME "etc\apps\SplunkWinLogon\bin\powershell"
+$positionFilePath = Join-Path -Path $env:SPLUNK_HOME "etc\apps\TA-WinLogon\bin\powershell"
 $positionFile = Join-Path $positionFilePath $positionFileName
 
 # If the position file does not exist, create it
